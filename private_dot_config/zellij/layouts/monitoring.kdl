@@ -1,0 +1,18 @@
+layout {
+  tab_template name="node-monitor" {
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+        plugin location="status-bar"
+    }
+  }
+  node-monitor split_direction="vertical" {
+    pane
+    pane {
+      command "btop"
+      borderless true
+    }
+  }
+}
