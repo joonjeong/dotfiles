@@ -9,9 +9,6 @@ layout {
     }
   }
   tab name="noname" split_direction="vertical" {
-    pane {
-      borderless true
-    }
     pane
   }
 }

@@ -38,6 +38,11 @@ return {
           },
         },
       })
+      lspconfig.rust_analyzer.setup {
+        settings = {
+          ['rust-analyzer'] = {},
+        }
+      }
       lspconfig.tsserver.setup({})
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
