@@ -1,0 +1,38 @@
+[pyprland]
+includes = ["~/.config/hypr/pyprland.d/"]
+
+plugins = [
+  "expose",
+  "scratchpads",
+  "shift_monitors",
+  "workspaces_follow_focus"
+]
+
+[pyprland.variables]
+
+[scratchpads.term]
+animation = "fromBottom"
+command = "alacritty --class scratch-term"
+class = "scratch-term"
+size = "90% 90%"
+max_size = "1920px 100%"
+force_monitor = "DP-3"
+
+[scratchpads.btop]
+animation = "fromTop"
+command = "alacritty --class scratch-btop --command btop"
+class = "scratch-btop"
+size = "90% 90%"
+max_size = "1920px 100%"
+force_monitor = "HDMI-A-1"
+
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+lazy = "true"
+size = "40% 90%"
+max_size = "1080px 100%"
+unfocus = "hide"
+preserve_aspect = true
+
