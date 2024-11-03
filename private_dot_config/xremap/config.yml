@@ -1,0 +1,5 @@
+modmap:
+  - name: CapsLock to Hangul
+    remap:
+      # CapsLock: Hangul
+      CapsLock: KEY_HANGEUL
