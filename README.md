@@ -1,6 +1,6 @@
 # Personal Dotfiles
 
-Personal system configuration files managed with [chezmoi](https://www.chezmoi.io/).
+Personal system configuration files managed with [chezmoi](https://www.chezmoi.io/) with multi-environment support and encryption.
 
 ## Quick Start
 
@@ -25,28 +25,32 @@ chezmoi update    # Update from remote and apply
 ## Repository Structure
 
 ```
-├── README.md                 # This file
+~/.local/share/chezmoi/
+├── README.md                 # This file (ignored by apply)
 ├── CLAUDE.md                 # Claude Code assistant instructions
-├── docs/                     # Documentation
+├── .chezmoiignore           # Files to exclude from home directory
+├── .chezmoi.toml.tmpl       # Main configuration template
+├── docs/                     # Documentation (ignored by apply)
 │   ├── SETUP.md             # Installation and setup guide
 │   ├── TEMPLATES.md         # Template system usage
 │   ├── SECURITY.md          # Encryption and security
 │   └── TROUBLESHOOTING.md   # Common issues and solutions
-├── .chezmoi.toml.tmpl       # Configuration template
 ├── dot_gitconfig.tmpl       # Git configuration template
 ├── dot_bashrc               # Bash configuration
 ├── private_dot_ssh/         # SSH keys (encrypted)
+│   ├── private_id_rsa.age  # Encrypted SSH key
+│   └── config.tmpl         # SSH config template
 └── dot_config/              # Application configs
-    ├── nvim/                # Neovim configuration
+    ├── nvim/               # Neovim configuration
     └── ...
 ```
 
 ## Key Features
 
-- **Multi-device support**: Different configurations for work/personal machines
-- **Template system**: Dynamic configuration based on hostname, OS, etc.
-- **Encryption**: Secure storage of SSH keys and sensitive data using age
-- **Automated setup**: Scripts for installing packages and initial setup
+- **Multi-environment**: Auto-detection of work/personal machines
+- **Templates**: Dynamic configs with OS detection (macOS/Linux/Windows)
+- **Encryption**: Age encryption for SSH keys and sensitive data
+- **Documentation**: Setup, templates, security, and troubleshooting guides
 
 ## Documentation
 
@@ -79,22 +83,20 @@ chezmoi update
 
 ## Configuration
 
-The main configuration is in `.chezmoi.toml.tmpl` which provides:
-
-- Host-specific variables
-- OS-specific settings
-- User data (name, email, etc.)
-- Encrypted data handling
+`.chezmoi.toml.tmpl` provides:
+- Environment detection (work/personal)
+- OS-specific settings and package managers
+- User data with environment overrides
+- Package lists and proxy settings
 
 ## Security
 
-Sensitive files are encrypted using [age](https://github.com/FiloSottile/age):
+Sensitive files encrypted with [age](https://github.com/FiloSottile/age):
+- SSH private keys (`.age` extension)
+- API tokens and certificates
+- Multi-device key management
 
-- SSH private keys
-- API tokens
-- Personal certificates
-
-See [Security Documentation](docs/SECURITY.md) for setup details.
+See [docs/SECURITY.md](docs/SECURITY.md) for setup details.
 
 ## Prerequisites
 
@@ -113,3 +115,21 @@ sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
 
 See [Setup Guide](docs/SETUP.md) for detailed instructions.
+
+## File Management
+
+**Ignored files** (`.chezmoiignore`):
+- `docs/`, `README.md`, `CLAUDE.md`, `.git/`
+
+**Template examples**:
+- Git config with work/personal switching
+- SSH config with environment-specific settings
+- Shell config with OS-specific aliases
+
+## Quick Reference
+
+```bash
+chezmoi status          # Check changes
+chezmoi cat ~/.gitconfig # View template output
+chezmoi data            # Debug template data
+```

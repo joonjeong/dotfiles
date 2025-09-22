@@ -1,0 +1,30 @@
+# Ignore documentation files - these stay in the repository but don't get applied to home directory
+docs/
+README.md
+CLAUDE.md
+
+# Ignore git and development files
+.git/
+.gitignore
+.gitattributes
+
+# Ignore editor and system files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore backup files
+*.bak
+*.backup
+*.orig
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+.tmp/
+temp/
+tmp/
